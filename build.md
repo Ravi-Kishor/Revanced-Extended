@@ -1,28 +1,16 @@
 CLI: revanced-cli-2.15.2-all.jar  
-Integrations: app-release-unsigned-v0.71.1.apk  
-Patches: revanced-patches-2.111.4.jar  
+Integrations: app-release-unsigned-v0.85.1.apk  
+Patches: revanced-patches-2.146.0.jar  
 
-YouTube
-==
-- Crowdin Translation Update
-`French`, `Polish`
+### [2.146.0](https://github.com/revanced/revanced-patches/compare/v2.145.0...v2.146.0) (2022-12-18)
+### Features
+* **predictive-back-gesture:** exclude by default ([176d34b](https://github.com/revanced/revanced-patches/commit/176d34b2ff92d0eb627dad86ad87f559df3db815))
+* **twitter/timeline-ads:** add clarifying notice to description ([0eca2af](https://github.com/revanced/revanced-patches/commit/0eca2af1a4a688903c61ff6469ffea90c60f06a6))
+* **youtube:** bump patches compatibility to v17.49.37 ([83ebc73](https://github.com/revanced/revanced-patches/commit/83ebc731130d3d216ac4b815382d8f13548cf665))
 
-YouTube Music
-==
-- Crowdin Translation Update
-`Bengali`
-
-ETC
-==
-- Added Support YouTube v17.45.36
-
-※ **Patches are not compatible after `YouTube v17.46.xx`**! Be sure to use the recommended version.
-
-※ If you want to contribute to the translation, refer this [documentations](https://telegra.ph/How-to-contribute-to-Crowdin-translations-via-upload-of-stringsxml-file-11-10)
-※ Please refer to the [documentations](https://github.com/inotia00/revanced-documentation/wiki/Method-3.-Using-official-ReVanced-Manager-(Android)) for a guide to building ReVanced Extended using the official ReVanced Manager.
   
 **App Versions:**  
-YouTube: 17.45.36  
+YouTube: 17.49.37  
 Music (arm-v7a): 5.36.51  
 
 Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) to be able to use non-root YouTube or Music  
