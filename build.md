@@ -22,7 +22,6 @@ bump v2.151.0
 ※ Compatible ReVanced Manager: v0.0.51 / v0.0.52
   
 **App Versions:**  
-Music (arm-v7a): 5.36.51  
 YouTube: 17.49.37  
 
 Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) to be able to use non-root YouTube or Music  
