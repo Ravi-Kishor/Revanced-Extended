@@ -1,17 +1,21 @@
 CLI: revanced-cli-2.20.1-all.jar  
 Integrations: app-release-unsigned-v0.91.2.apk  
-Patches: revanced-patches-2.152.1.jar  
+Patches: revanced-patches-2.152.4.jar  
 
 YouTube
 ==
-- hotfix: compile error
+- End of support for `add-missing-transition-patch` (supported by default from YouTube v18.01.32)
 
-YouTube Music
+ETC
 ==
-- crowdin translation update
-`Chinese Traditional`, `Turkish`
+- add support YouTube v18.01.32 (beta)
+- fix: upload error 🫠
 
 ※ Compatible ReVanced Manager: v0.0.51 / v0.0.52
+
+※ Of course, since YouTube v18.01.32 is still a beta build, there may still be unexpected issues.
+
+※ If you report an issue using ReVanced Extended v18.01.32 to the [issue report repo](https://github.com/inotia00/ReVanced_Extended), please add the label `(beta)`
   
 **App Versions:**  
 YouTube: 17.49.37  
