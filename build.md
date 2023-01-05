@@ -18,7 +18,7 @@ ETC
 ※ If you report an issue using ReVanced Extended v18.01.32 to the [issue report repo](https://github.com/inotia00/ReVanced_Extended), please add the label `(beta)`
   
 **App Versions:**  
-YouTube: 17.49.37  
+Music (arm-v7a): 5.36.51  
 
 Install [Vanced Microg](https://github.com/TeamVanced/VancedMicroG/releases) to be able to use non-root YouTube or Music  
 
