@@ -7,8 +7,8 @@ cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "both"
 #version = "latest"
-#included-patches = "'Disable Shorts on startup' 'Force premium heading' 'Theme' 'MaterialYou'"
-excluded-patches = "'Custom branding name YouTube' 'Custom branding icon YouTube' 'Custom branding name YouTube' 'Custom branding icon MMT' 'Custom branding icon Revancify Blue' 'Custom branding icon Revancify Red' 'Translations' 'SponsorBlock' 'Return YouTube Dislike' 'Enable wide search bar' 'Change start page'"
+included-patches = "'Disable Shorts on startup' 'Force premium heading' 'Theme' 'MaterialYou'"
+excluded-patches = "'Custom branding icon YouTube' 'Custom branding icon MMT' 'Custom branding icon Revancify Blue' 'Custom branding icon Revancify Red' 'Translations' 'SponsorBlock' 'Return YouTube Dislike' 'Enable wide search bar' 'Change start page'"
 
 [Music]
 apkmirror-dlurl = "https://apkmirror.com/apk/google-inc/youtube-music/"
