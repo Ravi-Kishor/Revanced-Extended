@@ -567,7 +567,7 @@ build_rv() {
 			fi
 		fi
 		if [ "${args[riplib]}" = true ]; then
-			patcher_args+=("--rip-lib x86_64 --rip-lib x86")
+			patcher_args+=("--rip-lib x86_64 --rip-lib x86 --rip-lib armeabi-v7a")
 			if [ "$build_mode" = module ]; then
 				patcher_args+=("--rip-lib arm64-v8a --rip-lib armeabi-v7a --unsigned")
 			else
