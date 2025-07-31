@@ -46,7 +46,8 @@ uptodown-dlurl = "https://google-photos.en.uptodown.com/android"
 [Spotify]
 uptodown-dlurl = "https://spotify.en.uptodown.com/android"
 version = "9.0.36.683"
-included-patches="'Unlock Spotify Premium' 'Spoof signature'"
+#included-patches="'Unlock Spotify Premium' 'Spoof signature'"
+patches-version = "v5.33.0-dev.4"
 
 
 [Twitch]
