@@ -46,7 +46,7 @@ uptodown-dlurl = "https://google-photos.en.uptodown.com/android"
 [Spotify]
 uptodown-dlurl = "https://spotify.en.uptodown.com/android"
 patches-source = "anddea/revanced-patches"
-cli-source = "anddea/revanced-cli"
+cli-source = "inotia00/revanced-cli"
 #version = "9.0.36.683"
 #included-patches="'Unlock Spotify Premium' 'Spoof signature'"
 #patches-version = "v5.33.0-dev.4"
