@@ -18,7 +18,7 @@ version = "8.14.54"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube-music"
 patches-version = "v5.9.1-dev.4"
 included-patches = ""
-excluded-patches = "'Certificate spoof' 'Custom branding icon for YouTube Music' 'Custom branding name for YouTube Music' 'Custom branding icon MMT' 'Custom branding icon Revancify Blue' 'Custom branding icon Revancify Red' 'Custom branding icon YouTube Music' 'Custom branding icon YouTube Music' 'Custom playback speed' 'Enable custom filter' 'Enable old style library shelf' 'Enable old style miniplayer' 'Enable zen mode' 'Hide category bar' 'Hide new playlist button' 'Hide playlist card' 'Hide radio button' 'Remember playback speed' 'Replace dismiss queue' 'Return YouTube Dislike' 'SponsorBlock' 'Spoof app version' 'Translations'"
+excluded-patches = "'Certificate spoof' 'Custom branding icon for YouTube Music' 'Custom branding name for YouTube Music' 'Custom branding icon MMT' 'Custom branding icon Revancify Blue' 'Custom branding icon Revancify Red' 'Custom branding icon YouTube Music' 'Custom branding icon YouTube Music' 'Custom playback speed' 'Enable custom filter' 'Enable old style library shelf' 'Enable old style miniplayer' 'Enable zen mode' 'Hide category bar' 'Hide new playlist button' 'Hide playlist card' 'Hide radio button' 'Remember playback speed' 'Replace dismiss queue' 'Return YouTube Dislike' 'SponsorBlock' 'Translations'"
 # archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
 
 [YouTube-Extended]
