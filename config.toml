@@ -6,7 +6,7 @@ parallel-jobs = 4
 
 # you can use rvmm-config-gen to generate a config
 
-[Music-Extended]
+[YT-Music]
 app-name = "Music"
 patches-source = "inotia00/revanced-patches"
 cli-source = "inotia00/revanced-cli"
@@ -22,6 +22,7 @@ excluded-patches = "'Certificate spoof' 'Custom branding icon for YouTube Music'
 # archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
 
 [YouTube-Extended]
+enabled = false
 app-name = "YouTube"
 patches-source = "inotia00/revanced-patches"
 cli-source = "inotia00/revanced-cli"
