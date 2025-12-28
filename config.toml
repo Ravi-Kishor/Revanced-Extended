@@ -8,7 +8,8 @@ parallel-jobs = 4
 
 [YT-Music ]
 app-name = "YT-Music"
-patches-source = "inotia00/revanced-patches"
+#patches-source = "inotia00/revanced-patches"
+patches-source = "mininxd/revanced-patches"
 cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "both"
@@ -23,7 +24,7 @@ excluded-patches = "'Certificate spoof' 'Custom branding icon for YouTube Music'
 
 [YouTube ]
 app-name = "YouTube"
-patches-source = "inotia00/revanced-patches"
+patches-source = "mininxd/revanced-patches"
 cli-source = "inotia00/revanced-cli"
 rv-brand = "ReVanced Extended"
 build-mode = "both"
