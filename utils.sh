@@ -607,7 +607,7 @@ build_rv() {
 			patcher_args+=("-d \"${spoof_video_patch}\"")
 		fi
 		if [ "${args[riplib]}" = true ]; then
-			patcher_args+=("--rip-lib x86_64 --rip-lib x86 --rip-lib armeabi-v7a")
+			patcher_args+=("--rip-lib x86_64 --rip-lib x86")
 			if [ "$build_mode" = module ]; then
 				patcher_args+=("--rip-lib arm64-v8a --rip-lib armeabi-v7a --unsigned")
 			else
