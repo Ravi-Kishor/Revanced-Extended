@@ -45,25 +45,33 @@ abort() {
 get_rv_prebuilts() {
 	local cli_src=$1 cli_ver=$2 patches_src=$3 patches_ver=$4
 	pr "Getting prebuilts (${patches_src%/*})" >&2
+
 	local cl_dir=${patches_src%/*}
 	cl_dir=${TEMP_DIR}/${cl_dir,,}-rv
 	[ -d "$cl_dir" ] || mkdir "$cl_dir"
-	for src_ver in "$cli_src CLI $cli_ver revanced-cli" "$patches_src Patches $patches_ver patches"; do
+
+	for src_ver in \
+		"$cli_src CLI $cli_ver revanced-cli" \
+		"$patches_src Patches $patches_ver patches"
+	do
 		set -- $src_ver
 		local src=$1 tag=$2 ver=${3-} fprefix=$4
-		local ext
+		local ext grab_cl dir rv_rel name_ver
+
 		if [ "$tag" = "CLI" ]; then
 			ext="jar"
-			local grab_cl=false
+			grab_cl=false
 		elif [ "$tag" = "Patches" ]; then
 			ext="rvp"
-			local grab_cl=true
-		else abort unreachable; fi
-		local dir=${src%/*}
-		dir=${TEMP_DIR}/${dir,,}-rv
+			grab_cl=true
+		else
+			abort unreachable
+		fi
+
+		dir=${TEMP_DIR}/${src%/*,,}-rv
 		[ -d "$dir" ] || mkdir "$dir"
 
-		local rv_rel="https://api.github.com/repos/${src}/releases" name_ver
+		rv_rel="https://api.github.com/repos/${src}/releases"
 		if [ "$ver" = "dev" ]; then
 			name_ver="*-dev*"
 		elif [ "$ver" = "latest" ]; then
@@ -74,51 +82,59 @@ get_rv_prebuilts() {
 			name_ver="$ver"
 		fi
 
-		local url file tag_name name
+		local file
 		file=$(find "$dir" -name "${fprefix}-${name_ver#v}.${ext}" -type f 2>/dev/null)
+
 		if [ -z "$file" ]; then
-			local resp asset name
+			local resp asset_count asset url name tag_name
+
 			resp=$(gh_req "$rv_rel" -) || return 1
-			if [ "$ver" = "dev" ]; then resp=$(jq -r '.[0]' <<<"$resp"); fi
+			[ "$ver" = "dev" ] && resp=$(jq -r '.[0]' <<<"$resp")
+
 			tag_name=$(jq -r '.tag_name' <<<"$resp")
-			asset=$(jq -e -r ".assets[] | select(.name | endswith(\"$ext\"))" <<<"$resp") || return 1
-			url=$(jq -r .url <<<"$asset")
-			name=$(jq -r .name <<<"$asset")
+
+			asset=$(jq -e -r \
+				".assets[]
+				 | select(
+				     .name | startswith(\"${fprefix}-\")
+				     and endswith(\".${ext}\")
+				   )" <<<"$resp"
+			) || abort "no matching ${ext} asset for ${src} ${ver}"
+
+			asset_count=$(wc -l <<<"$asset")
+			if [ "$asset_count" -ne 1 ]; then
+				abort "expected 1 ${ext} asset, got ${asset_count} for ${src} ${ver}"
+			fi
+
+			url=$(jq -r '.url' <<<"$asset")
+			name=$(jq -r '.name' <<<"$asset")
 			file="${dir}/${name}"
+
 			gh_dl "$file" "$url" >&2 || return 1
-			echo "$tag: $(cut -d/ -f1 <<<"$src")/${name}  " >>"${cl_dir}/changelog.md"
+			echo "$tag: $(cut -d/ -f1 <<<"$src")/${name}" >>"${cl_dir}/changelog.md"
 		else
 			grab_cl=false
-			local for_err=$file
 			if [ "$ver" = "latest" ]; then
 				file=$(grep -v '/[^/]*dev[^/]*$' <<<"$file" | head -1)
-			else file=$(grep "/[^/]*${ver#v}[^/]*\$" <<<"$file" | head -1); fi
-			if [ -z "$file" ]; then abort "filter fail: '$for_err' with '$ver'"; fi
-			name=$(basename "$file")
-			tag_name=$(cut -d'-' -f3- <<<"$name")
-			tag_name=v${tag_name%.*}
-		fi
-		if [ "$tag" = "Patches" ]; then
-			if [ $grab_cl = true ]; then echo -e "[Changelog](https://github.com/${src}/releases/tag/${tag_name})\n" >>"${cl_dir}/changelog.md"; fi
-			if [ "$REMOVE_RV_INTEGRATIONS_CHECKS" = true ]; then
-				if ! (
-					mkdir -p "${file}-zip" || return 1
-					unzip -qo "${file}" -d "${file}-zip" || return 1
-					java -cp "${BIN_DIR}/paccer.jar:${BIN_DIR}/dexlib2.jar" com.jhc.Main "${file}-zip/extensions/shared.rve" "${file}-zip/extensions/shared-patched.rve" || return 1
-					mv -f "${file}-zip/extensions/shared-patched.rve" "${file}-zip/extensions/shared.rve" || return 1
-					rm "${file}" || return 1
-					cd "${file}-zip" || abort
-					zip -0rq "${CWD}/${file}" . || return 1
-				) >&2; then
-					echo >&2 "Patching revanced-integrations failed"
-				fi
-				rm -r "${file}-zip" || :
+			else
+				file=$(grep "/[^/]*${ver#v}[^/]*\$" <<<"$file" | head -1)
 			fi
+			[ -z "$file" ] && abort "cached file filter failed"
+			name=$(basename "$file")
+			tag_name="v${name#${fprefix}-}"
+			tag_name="${tag_name%.${ext}}"
 		fi
+
+		if [ "$tag" = "Patches" ] && [ "$grab_cl" = true ]; then
+			echo -e "[Changelog](https://github.com/${src}/releases/tag/${tag_name})\n" \
+				>>"${cl_dir}/changelog.md"
+		fi
+
 		echo -n "$file "
 	done
 	echo
 }
+
 
 set_prebuilts() {
 	APKSIGNER="${BIN_DIR}/apksigner.jar"
