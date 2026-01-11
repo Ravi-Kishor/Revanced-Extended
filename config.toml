@@ -6,8 +6,7 @@ parallel-jobs = 8
 # you can use rvmm-config-gen to generate a config
 
 [YouTube]
-#cli-source = "MorpheApp/morphe-cli"
-cli-source = "j-hc/revanced-cli"
+cli-source = "MorpheApp/morphe-cli"
 patches-source = "MorpheApp/morphe-patches"
 rv-brand = "Morphe"
 build-mode = "both"
@@ -23,8 +22,7 @@ excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for
 
 
 [Music]
-#cli-source = "MorpheApp/morphe-cli"
-cli-source = "j-hc/revanced-cli"
+cli-source = "MorpheApp/morphe-cli"
 patches-source = "MorpheApp/morphe-patches"
 rv-brand = "Morphe"
 build-mode = "both"
