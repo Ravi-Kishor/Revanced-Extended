@@ -7,8 +7,8 @@ parallel-jobs = 1
 # you can use rvmm-config-gen to generate a config
 
 [YouTube]
-patches-source = "MorpheApp/revanced-patches"
-cli-source = "MorpheApp/revanced-cli"
+patches-source = "MorpheApp/morphe-patches"
+cli-source = "MorpheApp/morphe-cli"
 rv-brand = "Morphe"
 build-mode = "both"
 version = "auto"
@@ -20,6 +20,8 @@ excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for
 
 
 [Music]
+patches-source = "MorpheApp/morphe-patches"
+cli-source = "MorpheApp/morphe-cli"
 build-mode = "both"
 arch = "both"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube-music"
