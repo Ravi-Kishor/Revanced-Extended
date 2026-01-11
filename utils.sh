@@ -47,8 +47,8 @@ get_rv_prebuilts() {
 	pr "Getting prebuilts (${patches_src%/*})" >&2
 
 	local cl_dir=${patches_src%/*}
-	cl_dir=${TEMP_DIR}/${cl_dir,,}-rv
-	[ -d "$cl_dir" ] || mkdir "$cl_dir"
+	cl_dir="${TEMP_DIR}/${cl_dir,,}-rv"
+	mkdir -p "$cl_dir"
 
 	for src_ver in \
 		"$cli_src CLI $cli_ver revanced-cli" \
@@ -56,11 +56,10 @@ get_rv_prebuilts() {
 	do
 		set -- $src_ver
 		local src=$1 tag=$2 ver=${3-} fprefix=$4
-		local ext grab_cl dir rv_rel name_ver
+		local ext grab_cl=false
 
 		if [ "$tag" = "CLI" ]; then
 			ext="jar"
-			grab_cl=false
 		elif [ "$tag" = "Patches" ]; then
 			ext="rvp"
 			grab_cl=true
@@ -68,10 +67,12 @@ get_rv_prebuilts() {
 			abort unreachable
 		fi
 
-		dir=${TEMP_DIR}/${src%/*,,}-rv
-		[ -d "$dir" ] || mkdir "$dir"
+		local dir="${TEMP_DIR}/${src%/*,,}-rv"
+		mkdir -p "$dir"
 
-		rv_rel="https://api.github.com/repos/${src}/releases"
+		local rv_rel="https://api.github.com/repos/${src}/releases"
+		local name_ver
+
 		if [ "$ver" = "dev" ]; then
 			name_ver="*-dev*"
 		elif [ "$ver" = "latest" ]; then
@@ -83,27 +84,34 @@ get_rv_prebuilts() {
 		fi
 
 		local file
-		file=$(find "$dir" -name "${fprefix}-${name_ver#v}.${ext}" -type f 2>/dev/null)
+		file=$(find "$dir" -name "${fprefix}-${name_ver#v}.${ext}" -type f 2>/dev/null | head -1)
 
 		if [ -z "$file" ]; then
-			local resp asset_count asset url name tag_name
+			local resp asset asset_count url name tag_name
 
 			resp=$(gh_req "$rv_rel" -) || return 1
 			[ "$ver" = "dev" ] && resp=$(jq -r '.[0]' <<<"$resp")
 
 			tag_name=$(jq -r '.tag_name' <<<"$resp")
 
-			asset=$(jq -e -r \
+			# 1) try prefix match
+			asset=$(jq -r \
 				".assets[]
-				 | select(
-				     .name | startswith(\"${fprefix}-\")
-				     and endswith(\".${ext}\")
-				   )" <<<"$resp"
-			) || abort "no matching ${ext} asset for ${src} ${ver}"
+				 | select(.name | startswith(\"${fprefix}-\") and endswith(\".${ext}\"))" \
+				<<<"$resp"
+			)
 
-			asset_count=$(wc -l <<<"$asset")
+			# 2) fallback: any matching extension
+			if [ -z "$asset" ]; then
+				asset=$(jq -r \
+					".assets[] | select(.name | endswith(\".${ext}\"))" \
+					<<<"$resp"
+				)
+			fi
+
+			asset_count=$(wc -l <<<"$asset" | tr -d ' ')
 			if [ "$asset_count" -ne 1 ]; then
-				abort "expected 1 ${ext} asset, got ${asset_count} for ${src} ${ver}"
+				abort "expected exactly 1 ${ext} asset, got ${asset_count} for ${src} ${ver}"
 			fi
 
 			url=$(jq -r '.url' <<<"$asset")
@@ -114,12 +122,6 @@ get_rv_prebuilts() {
 			echo "$tag: $(cut -d/ -f1 <<<"$src")/${name}" >>"${cl_dir}/changelog.md"
 		else
 			grab_cl=false
-			if [ "$ver" = "latest" ]; then
-				file=$(grep -v '/[^/]*dev[^/]*$' <<<"$file" | head -1)
-			else
-				file=$(grep "/[^/]*${ver#v}[^/]*\$" <<<"$file" | head -1)
-			fi
-			[ -z "$file" ] && abort "cached file filter failed"
 			name=$(basename "$file")
 			tag_name="v${name#${fprefix}-}"
 			tag_name="${tag_name%.${ext}}"
