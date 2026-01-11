@@ -7,7 +7,7 @@ parallel-jobs = 8
 
 [YouTube]
 #cli-source = "MorpheApp/morphe-cli"
-cli-source = "inotia00/revanced-cli"
+cli-source = "j-hc/revanced-cli"
 patches-source = "MorpheApp/morphe-patches"
 rv-brand = "Morphe"
 build-mode = "both"
@@ -24,7 +24,7 @@ excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for
 
 [Music]
 #cli-source = "MorpheApp/morphe-cli"
-cli-source = "inotia00/revanced-cli"
+cli-source = "j-hc/revanced-cli"
 patches-source = "MorpheApp/morphe-patches"
 rv-brand = "Morphe"
 build-mode = "both"
