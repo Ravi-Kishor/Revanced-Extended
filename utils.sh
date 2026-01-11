@@ -607,7 +607,7 @@ build_rv() {
 			patcher_args+=("-d \"${spoof_video_patch}\"")
 		fi
 		if [ "${args[riplib]}" = true ]; then
-			patcher_args+=("--rip-lib x86_64 --rip-lib x86")
+			patcher_args+=("--rip-lib x86_64 --rip-lib x86 --rip-lib armeabi-v7a")
 			if [ "$build_mode" = module ]; then
 				patcher_args+=("--rip-lib arm64-v8a --rip-lib armeabi-v7a --unsigned")
 			else
@@ -676,7 +676,7 @@ module_prop() {
 name=${2}
 version=v${3}
 versionCode=${NEXT_VER_CODE}
-author=j-hc
+author=Night_wolf19
 description=${4}" >"${6}/module.prop"
 
 	if [ "$ENABLE_MAGISK_UPDATE" = true ]; then echo "updateJson=${5}" >>"${6}/module.prop"; fi
