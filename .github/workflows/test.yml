@@ -71,8 +71,7 @@ jobs:
           echo "BUILD_LOG<<${DELIM}" >> "$GITHUB_OUTPUT"
           cat build.md >> "$GITHUB_OUTPUT"
           echo "${DELIM}" >> "$GITHUB_OUTPUT"
-          cp -f build.md build.tmp
-          
+          cp -f build.md build.tmp          
       - name: Final strip base.apk inside Magisk modules (ARM64 only)
         run: |
           echo "Final stripping of base.apk in Magisk modules"
@@ -84,20 +83,19 @@ jobs:
             unzip -q "$MOD" -d tmp_mod
 
             echo "Before:"
-            unzip -l tmp_mod/base.apk | grep lib/
+            unzip -l tmp_mod/base.apk | grep lib/ || true
 
             zip -d tmp_mod/base.apk \
               "lib/armeabi-v7a/*" \
               "lib/x86/*" \
-              "lib/x86_64/*"
+              "lib/x86_64/*" || true
 
             echo "After:"
-            unzip -l tmp_mod/base.apk | grep lib/
+            unzip -l tmp_mod/base.apk | grep lib/ || true
 
             (cd tmp_mod && zip -qr "../$MOD" .)
             rm -rf tmp_mod
           done
-
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
         with:
