@@ -64,6 +64,31 @@ jobs:
               "lib/x86/*" \
               "lib/x86_64/*" || true
           done
+      - name: Strip unused native libs inside Magisk modules (ARM64 only)
+        run: |
+          echo "Stripping ABIs inside Magisk modules..."
+          cd build || { echo "build folder not found"; exit 1; }
+
+          for MOD in *magisk*.zip; do
+            [ "$MOD" = "*magisk*.zip" ] && continue
+            echo "Processing module $MOD"
+
+            TMPDIR=$(mktemp -d)
+            unzip -q "$MOD" -d "$TMPDIR"
+
+            # Find APKs inside module
+            find "$TMPDIR" -name "*.apk" | while read -r APK; do
+              echo "  Stripping $APK"
+              zip -d "$APK" \
+                "lib/armeabi-v7a/*" \
+                "lib/x86/*" \
+                "lib/x86_64/*" || true
+            done
+
+            # Repack module
+            (cd "$TMPDIR" && zip -qr "../$MOD" .)
+            rm -rf "$TMPDIR"
+          done
 
       - name: Get output
         id: get_output
