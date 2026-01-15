@@ -64,32 +64,6 @@ jobs:
               "lib/x86/*" \
               "lib/x86_64/*" || true
           done
-            - name: Strip native libs from base.apk inside Magisk module (ARM64 only)
-        run: |
-          echo "Stripping libs from base.apk in Magisk modules..."
-          cd build || exit 1
-
-          for MOD in *magisk*.zip; do
-            [ "$MOD" = "*magisk*.zip" ] && continue
-            echo "Processing module: $MOD"
-
-            TMPDIR=$(mktemp -d)
-            unzip -q "$MOD" -d "$TMPDIR"
-
-            if [ -f "$TMPDIR/base.apk" ]; then
-              echo "  Found base.apk → stripping ABIs"
-              zip -d "$TMPDIR/base.apk" \
-                "lib/armeabi-v7a/*" \
-                "lib/x86/*" \
-                "lib/x86_64/*" || true
-            else
-              echo "  base.apk not found, skipping"
-            fi
-
-            (cd "$TMPDIR" && zip -qr "../$MOD" .)
-            rm -rf "$TMPDIR"
-          done
-
       - name: Get output
         id: get_output
         run: |
@@ -97,7 +71,30 @@ jobs:
           echo "BUILD_LOG<<${DELIM}" >> "$GITHUB_OUTPUT"
           cat build.md >> "$GITHUB_OUTPUT"
           echo "${DELIM}" >> "$GITHUB_OUTPUT"
-          cp -f build.md build.tmp
+          cp -f build.md build.tmp          
+      - name: EXPERIMENTAL – remove full lib folder from base.apk
+        run: |
+          echo "EXPERIMENTAL: Removing entire lib folder from base.apk"
+          cd build || exit 1
+
+          for MOD in *magisk*.zip; do
+            echo "Processing $MOD"
+
+            unzip -q "$MOD" -d tmp_mod
+
+            if [ -f tmp_mod/base.apk ]; then
+              echo "Before:"
+              unzip -l tmp_mod/base.apk | grep lib/ | head -10 || true
+
+              zip -d tmp_mod/base.apk "lib/*" || true
+
+              echo "After:"
+              unzip -l tmp_mod/base.apk | grep lib/ || echo "lib folder gone"
+            fi
+
+            (cd tmp_mod && zip -qr "../$MOD" .)
+            rm -rf tmp_mod
+          done
 
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
