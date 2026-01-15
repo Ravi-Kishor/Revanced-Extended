@@ -64,7 +64,7 @@ jobs:
               "lib/x86/*" \
               "lib/x86_64/*" || true
           done
-            - name: Strip native libs from base.apk inside Magisk module (ARM64 only)
+      - name: Strip native libs from base.apk inside Magisk module (ARM64 only)
         run: |
           echo "Stripping libs from base.apk in Magisk modules..."
           cd build || exit 1
