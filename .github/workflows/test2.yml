@@ -96,6 +96,40 @@ jobs:
             rm -rf tmp_mod
           done
 
+      - name: Zipalign & sign APKs (non-root)
+        run: |
+          echo "Signing APKs..."
+          cd build || exit 1
+
+          # Create debug keystore (safe for CI)
+          keytool -genkeypair \
+            -keystore debug.keystore \
+            -storepass android \
+            -keypass android \
+            -alias androiddebugkey \
+            -keyalg RSA \
+            -keysize 2048 \
+            -validity 10000 \
+            -dname "CN=Android Debug,O=Android,C=US"
+
+          for APK in *.apk; do
+            [ "$APK" = "*.apk" ] && continue
+            echo "Signing $APK"
+
+            zipalign -f 4 "$APK" aligned.apk
+
+            apksigner sign \
+              --ks debug.keystore \
+              --ks-pass pass:android \
+              --key-pass pass:android \
+              aligned.apk
+
+            mv aligned.apk "$APK"
+
+            apksigner verify "$APK"
+          done
+
+
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
         with:
