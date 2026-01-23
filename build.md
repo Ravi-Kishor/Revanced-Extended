@@ -1,3 +1,4 @@
+Music: 9.02.50  
 YouTube: 20.52.34  
 
 Install [Microg](https://github.com/ReVanced/GmsCore/releases) for non-root YouTube and YT Music APKs  
