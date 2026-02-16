@@ -113,10 +113,9 @@ get_prebuilts() {
 		fi
 
 		if [ "$tag" = "CLI" ]; then
-			PATCH_EXT=$(java -jar "$file" -h | grep -oP -m1 '\w+(?= files)' | tr '[:upper:]' '[:lower:]')
-			if [ -z "$PATCH_EXT" ]; then abort "Unable to detect patch extension from CLI help output."; fi
-		elif [ "$tag" = "Patches" ]; then
-			if [ $grab_cl = true ]; then echo -e "[Changelog](https://github.com/${src}/releases/tag/${tag_name})\n" >>"${cl_dir}/changelog.md"; fi
+    PATCH_EXT="mpp"
+elif [ "$tag" = "Patches" ]; then
+
 			if [ "$REMOVE_RV_INTEGRATIONS_CHECKS" = true ]; then
 				# inner extension (rvp->rve, mpp->mpe)
 				local inner_ext="${ext%p}e"
