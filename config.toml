@@ -1,5 +1,6 @@
-enable-magisk-update = false # set this to false if you do not want to receive updates for the module in magisk app
-parallel-jobs = 6
+enable-magisk-update = true # set this to false if you do not want to receive updates for the module in magisk app
+parallel-jobs = 4
+riplib = true
 # add 'enabled = false' for not patching a specific app or remove it from the config
 # see https://github.com/j-hc/revanced-magisk-module/blob/main/CONFIG.md for more detailed explanations
 
@@ -10,6 +11,7 @@ cli-source = "MorpheApp/morphe-cli"
 patches-source = "MorpheApp/morphe-patches"
 rv-brand = "Morphe"
 build-mode = "both"
+cli-version = "dev"
 #version = "latest"
 version = "21.07.243"
 #arch = "arm64-v8a"
@@ -28,6 +30,7 @@ excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for
 cli-source = "MorpheApp/morphe-cli"
 patches-source = "MorpheApp/morphe-patches"
 rv-brand = "Morphe"
+cli-version = "dev"
 build-mode = "both"
 arch = "arm64-v8a"
 #version = "latest"
