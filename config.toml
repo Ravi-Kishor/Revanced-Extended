@@ -14,15 +14,15 @@ build-mode = "both"
 cli-version = "dev"
 #version = "latest"
 version = "21.06.257"
-#arch = "arm64-v8a"
+arch = "arm64-v8a"
 #dpi = "120-640dpi"
-#dpi = "480-640dpi"
+dpi = "480-640dpi"
 #riplib = true
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 #archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 included-patches = "'Disable Shorts on startup' 'Force premium heading' 'MaterialYou' 'Material You' 'Theme'"
-excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for YouTube' 'Custom branding' 'Change start page' 'SponsorBlock' 'Return YouTube Dislike' 'Enable debug logging' 'Alternative thumbnails' 'Enable debugging'"
+excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for YouTube' 'Custom branding' 'Change start page' 'SponsorBlock' 'Return YouTube Dislike' 'Enable debug logging' 'Alternative thumbnails' 'Enable debugging' 'striplibs'"
 #patcher-args = "-e 'Theme' -ObackgroundColor=@android:color/system_neutral1 _900"
 
 
