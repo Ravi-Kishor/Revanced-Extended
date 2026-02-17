@@ -14,9 +14,9 @@ build-mode = "both"
 dpi = "320-640dpi"
 version = "20.51.39"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
-uptodown-dlurl = "https://youtube.en.uptodown.com/android"
-archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
-included-patches = "'Disable Shorts on startup' 'Force premium heading' 'MaterialYou' 'Material You' 'Theme'"
+#uptodown-dlurl = "https://youtube.en.uptodown.com/android"
+#archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
+included-patches = "'Disable Shorts on startup' 'Force premium heading' 'MaterialYou' 'Material You'"
 excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for YouTube' 'Custom branding' 'Change start page' 'SponsorBlock' 'Return YouTube Dislike' 'Enable debug logging' 'Alternative thumbnails' 'Enable debugging'"
 
 [Morphe-Music]
