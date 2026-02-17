@@ -35,7 +35,7 @@ excluded-patches = "'Certificate spoof' 'Custom branding' 'Custom branding icon 
 
 
 [GooglePhotos]
-enabled = true
+enabled = false
 patches-source = "ReVanced/revanced-patches"
 cli-source = "ReVanced/revanced-cli"
 build-mode = "both"
