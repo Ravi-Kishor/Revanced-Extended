@@ -60,6 +60,30 @@ jobs:
           echo "${DELIM}" >> "$GITHUB_OUTPUT"
           cp -f build.md build.tmp
 
+      - name: EXPERIMENTAL – remove full lib folder from base.apk
+        run: |
+          echo "EXPERIMENTAL: Removing entire lib folder from base.apk"
+          cd build || exit 1
+
+          for MOD in *magisk*.zip; do
+            echo "Processing $MOD"
+
+            unzip -q "$MOD" -d tmp_mod
+
+            if [ -f tmp_mod/base.apk ]; then
+              echo "Before:"
+              unzip -l tmp_mod/base.apk | grep lib/ | head -10 || true
+
+              zip -d tmp_mod/base.apk "lib/*" || true
+
+              echo "After:"
+              unzip -l tmp_mod/base.apk | grep lib/ || echo "lib folder gone"
+            fi
+
+            (cd tmp_mod && zip -qr "../$MOD" .)
+            rm -rf tmp_mod
+          done
+
       - name: Upload modules to release
         uses: svenstaro/upload-release-action@v2
         with:
