@@ -1,5 +1,5 @@
 Morphe-Music: 9.06.51  
-Morphe-YouTube: 21.07.243  
+Morphe-YouTube: 21.06.257  
 
 Install [Microg](https://github.com/ReVanced/GmsCore/releases) for non-root YouTube and YT Music APKs  
 Use [zygisk-detach](https://github.com/j-hc/zygisk-detach) to detach root ReVanced YouTube and YT Music from Play Store  
