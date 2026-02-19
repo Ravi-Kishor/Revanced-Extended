@@ -619,23 +619,14 @@ build_rv() {
 				patcher_args+=("-d \"${microg_patch}\"")
 			fi
 		fi
-
-		local stock_apk_to_patch="${stock_apk}.stripped.apk"
-		cp -f "$stock_apk" "$stock_apk_to_patch"
-		if [ "$build_mode" = module ]; then
-			zip -d "$stock_apk_to_patch" "lib/*" >/dev/null 2>&1 || :
-		else
-			if [ "$arch" = "arm64-v8a" ]; then
-				zip -d "$stock_apk_to_patch" "lib/armeabi-v7a/*" "lib/x86_64/*" "lib/x86/*" >/dev/null 2>&1 || :
-			elif [ "$arch" = "arm-v7a" ]; then
-				zip -d "$stock_apk_to_patch" "lib/arm64-v8a/*" "lib/x86_64/*" "lib/x86/*" >/dev/null 2>&1 || :
-			elif [ "$arch" = "x86" ]; then
-				zip -d "$stock_apk_to_patch" "lib/arm64-v8a/*" "lib/x86_64/*" "lib/armeabi-v7a/*" >/dev/null 2>&1 || :
-			elif [ "$arch" = "x86_64" ]; then
-				zip -d "$stock_apk_to_patch" "lib/arm64-v8a/*" "lib/armeabi-v7a/*" "lib/x86/*" >/dev/null 2>&1 || :
-			else
-				zip -d "$stock_apk_to_patch" "lib/x86_64/*" "lib/x86/*" >/dev/null 2>&1 || :
-			fi
+		# if [ -n "$spoof_client_patch" ] && [[ ! ${p_patcher_args[*]} =~ $spoof_client_patch ]] && [ "$build_mode" = module ]; then
+		# 	patcher_args+=("-d \"${spoof_client_patch}\"")
+		# fi
+		# if [ -n "$spoof_video_patch" ] && [[ ! ${p_patcher_args[*]} =~ $spoof_video_patch ]] && [ "$build_mode" = module ]; then
+		# 	patcher_args+=("-d \"${spoof_video_patch}\"")
+		# fi
+		if [ "${args[riplib]}" = true ]; then
+			patcher_args+=("--striplibs arm64-v8a")
 		fi
 		if [ "${NORB:-}" != true ] || [ ! -f "$patched_apk" ]; then
 			if ! patch_apk "$stock_apk" "$patched_apk" "${patcher_args[*]}" "${args[cli]}" "${args[ptjar]}"; then
