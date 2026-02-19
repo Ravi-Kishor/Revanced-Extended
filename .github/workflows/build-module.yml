@@ -1,4 +1,5 @@
 name: Build Modules
+
 on:
   workflow_call:
     inputs:
@@ -6,24 +7,30 @@ on:
         type: boolean
         required: false
         default: true
-
   workflow_dispatch:
 
 jobs:
   run:
     permissions: write-all
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/setup-java@v4
-        with:
-          distribution: "zulu"
-          java-version: "17"
 
+    steps:
       - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           submodules: true
+
+      # REQUIRED for build.sh (it checks for apt-installed JRE)
+      - name: Install OpenJDK 17
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-17-jre
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: "17"
 
       - name: Update config
         if: ${{ inputs.from_ci }}
@@ -45,7 +52,12 @@ jobs:
           echo "NEXT_VER_CODE=$((TAG + 1))" >> $GITHUB_OUTPUT
 
       - name: Build modules/APKs
-        run: if [ -f "config.json" ]; then ./build.sh config.json; else ./build.sh config.toml; fi
+        run: |
+          if [ -f "config.json" ]; then
+            ./build.sh config.json
+          else
+            ./build.sh config.toml
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: $GITHUB_REPOSITORY
@@ -73,9 +85,7 @@ jobs:
             if [ -f tmp_mod/base.apk ]; then
               echo "Before:"
               unzip -l tmp_mod/base.apk | grep lib/ | head -10 || true
-
               zip -d tmp_mod/base.apk "lib/*" || true
-
               echo "After:"
               unzip -l tmp_mod/base.apk | grep lib/ || echo "lib folder gone"
             fi
@@ -100,6 +110,7 @@ jobs:
         run: |
           git checkout -f update || git switch --discard-changes --orphan update
           cp -f build.tmp build.md
+
           get_update_json() {
             echo "{
             \"version\": \"$1\",
@@ -142,6 +153,7 @@ jobs:
           NL=$'\n'
           APKS=""
           MODULES=""
+
           for OUTPUT in *; do
             DL_URL="$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/download/${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}/${OUTPUT}"
             if [[ $OUTPUT = *.apk ]]; then
@@ -150,10 +162,12 @@ jobs:
               MODULES+="${NL}📦[${OUTPUT}](${DL_URL})"
             fi
           done
+
           MODULES=${MODULES#"$NL"}
           APKS=${APKS#"$NL"}
 
           BODY="$(sed 's/^\* \*\*/↪ \*\*/g; s/^\* `/↪ \*\*/g; s/`/\*/g; s/^\* /\↪/g; s/\*\*/\*/g; s/###//g; s/^- /↪ /g; /^==/d;' ../build.md)"
+
           MSG="*New build!*
 
           ${BODY}
@@ -165,7 +179,13 @@ jobs:
           APKs:
           ${APKS}
           "
-          echo "'$MSG'"
+
           MSG=${MSG:0:9450}
           POST="https://api.telegram.org/bot${TG_TOKEN}/sendMessage"
-          curl -X POST --data-urlencode "parse_mode=Markdown" --data-urlencode "disable_web_page_preview=true" --data-urlencode "text=${MSG}" --data-urlencode "chat_id=${TG_CHAT}" "$POST"
+
+          curl -X POST \
+            --data-urlencode "parse_mode=Markdown" \
+            --data-urlencode "disable_web_page_preview=true" \
+            --data-urlencode "text=${MSG}" \
+            --data-urlencode "chat_id=${TG_CHAT}" \
+            "$POST"
