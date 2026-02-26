@@ -16,7 +16,7 @@ riplib = true
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube/"
 uptodown-dlurl = "https://youtube.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
-included-patches = "'Disable Shorts on startup' 'Force premium heading' 'MaterialYou' 'Material You' '--striplibs arm64-v8a'"
+included-patches = "'Disable Shorts on startup' 'Force premium heading' 'MaterialYou' 'Material You' 'striplibs arm64-v8a'"
 excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for YouTube' 'Custom branding' 'Change start page' 'SponsorBlock' 'Return YouTube Dislike' 'Enable debug logging' 'Alternative thumbnails' 'Enable debugging'"
 
 [Morphe-Music]
