@@ -20,6 +20,7 @@ included-patches = "'Disable Shorts on startup' 'Force premium heading' 'Materia
 excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for YouTube' 'Custom branding' 'Change start page' 'SponsorBlock' 'Return YouTube Dislike' 'Enable debug logging' 'Alternative thumbnails' 'Enable debugging'"
 
 [Morphe-Music]
+enabled = false
 patches-source = "MorpheApp/morphe-patches"
 cli-source = "MorpheApp/morphe-cli"
 patches-version = "latest"
@@ -36,7 +37,7 @@ excluded-patches = "'Certificate spoof' 'Custom branding' 'Custom branding icon 
 
 
 [GooglePhotos]
-enabled = true
+enabled = false
 patches-source = "ReVanced/revanced-patches"
 cli-source = "ReVanced/revanced-cli"
 build-mode = "both"
