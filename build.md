@@ -6,6 +6,6 @@ Use [zygisk-detach](https://github.com/j-hc/zygisk-detach) to detach root ReVanc
 
 [revanced-magisk-module](https://github.com/j-hc/revanced-magisk-module)
   
-CLI: MorpheApp/morphe-cli-1.4.0-dev.4-all.jar  
-Patches: MorpheApp/patches-1.14.0.mpp  
-CLI: MorpheApp/morphe-cli-1.4.0-dev.4-all.jar    
+CLI: MorpheApp/morphe-cli-1.5.0-dev.2-all.jar  
+Patches: MorpheApp/patches-1.15.0.mpp  
+CLI: MorpheApp/morphe-cli-1.5.0-dev.2-all.jar    
