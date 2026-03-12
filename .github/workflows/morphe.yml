@@ -1,4 +1,4 @@
-name: Build Modules
+name: Morphe
 on:
   workflow_call:
     inputs:
