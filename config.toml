@@ -6,7 +6,7 @@ riplib = true
 [GooglePhotos]
 #enabled="false"
 build-mode = "both"
-#patches-version=" v5.48.0"
+patches-version=" v5.48.0"
 #patches-version = "dev"
 #cli-version = "dev"
 arch = "arm64-v8a"
@@ -18,7 +18,7 @@ uptodown-dlurl = "https://google-photos.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.photos"
 
 [ProtonVPN]
-enabled="false"
+enabled="true"
 build-mode = "both"
 #patches-version=" v5.48.0"
 #patches-version = "dev"
