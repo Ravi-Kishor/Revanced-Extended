@@ -65,7 +65,7 @@ jobs:
           echo "EXPERIMENTAL: Removing entire lib folder from base.apk"
           cd build || exit 1
 
-          for MOD in *magisk*.zip; do
+          for MOD in *module*.zip; do
             echo "Processing $MOD"
 
             unzip -q "$MOD" -d tmp_mod
