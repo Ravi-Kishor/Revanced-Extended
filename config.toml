@@ -6,7 +6,7 @@ riplib = true
 [Morphe-YouTube]
 patches-source = "MorpheApp/morphe-patches"
 cli-source = "MorpheApp/morphe-cli"
-patches-version = "dev"
+#patches-version = "dev"
 #cli-version = "dev"
 app-name = "YouTube"
 rv-brand = "Morphe"
@@ -22,8 +22,8 @@ excluded-patches = "'Custom branding icon for YouTube' 'Custom branding name for
 
 [Morphe-Music]
 patches-source = "MorpheApp/morphe-patches"
-cli-source = "MorpheApp/morphe-cli"
-patches-version = "dev"
+#cli-source = "MorpheApp/morphe-cli"
+#patches-version = "dev"
 #cli-version = "dev"
 app-name = "Music"
 rv-brand = "Morphe"
