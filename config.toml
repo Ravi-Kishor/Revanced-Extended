@@ -50,4 +50,3 @@ riplib = true
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube-music/"
 uptodown-dlurl = "https://youtube-music.en.uptodown.com/android"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.youtube.music"
-excluded-patches = "'Certificate spoof' 'Custom branding' 'Custom branding icon for YouTube Music' 'Custom branding name for YouTube Music' 'Custom branding icon MMT' 'Custom branding icon Revancify Blue' 'Custom branding icon Revancify Red' 'Custom branding icon YouTube Music' 'Custom branding icon YouTube Music' 'Custom playback speed' 'Enable custom filte
