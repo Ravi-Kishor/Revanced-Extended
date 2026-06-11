@@ -1,4 +1,4 @@
-Instagram: 434.0.0.0.69  
+Instagram: 432.0.0.18.80  
 Morphe-Music: 9.19.51  
 Morphe-YouTube: 21.22.165  
 
