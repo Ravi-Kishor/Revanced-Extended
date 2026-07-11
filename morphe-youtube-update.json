@@ -1,6 +1,6 @@
 {
-  "version": "v21.22.165 (patches 1.34.0.mpp)",
-  "versionCode": 172,
-  "zipUrl": "https://github.com/Ravi-Kishor/Revanced-Extended/releases/download/172/youtube-morphe-module-v21.22.165-arm64-v8a.zip",
+  "version": "v21.26.364-SECONDARY (patches 1.34.0.mpp)",
+  "versionCode": 173,
+  "zipUrl": "https://github.com/Ravi-Kishor/Revanced-Extended/releases/download/173/youtube-morphe-module-v21.26.364-SECONDARY-arm64-v8a.zip",
   "changelog": "https://raw.githubusercontent.com/Ravi-Kishor/Revanced-Extended/update/build.md"
 }
