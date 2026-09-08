@@ -138,6 +138,7 @@ get_prebuilts() {
 			file="${dir}/${name}"
 			gh_dl "$file" "$url" >&2 || return 1
 		else
+			local grab_cl="false"
 			name=$(basename "$file")
 			tag_name=$(cut -d'-' -f2- <<<"$name")
 			tag_name=v${tag_name%.*}
