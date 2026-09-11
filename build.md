@@ -1,3 +1,4 @@
+GooglePhotos: 7.80.0.929302933  
 Morphe-Music: 9.35.54  
 Morphe-YouTube: 21.36.45  
 
