@@ -4,7 +4,8 @@ cli-source = "MorpheApp/morphe-cli"
 rv-brand = "Piko"
 patches-version = "dev"
 cli-version = "dev"
-
+app-name = "Instagram"
+pkg-name = "com.instagram.android"
 riplib = true
 
 #apkmirror-dlurl = "https://www.apkmirror.com/apk/instagram/instagram-instagram"
