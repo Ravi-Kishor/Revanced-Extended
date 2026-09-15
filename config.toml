@@ -2,7 +2,7 @@
 patches-source = "crimera/piko-newx"
 cli-source = "MorpheApp/morphe-cli"
 rv-brand = "Piko"
-patches-version = "dev"
+patches-version = "v3.10.0-dev.8"
 cli-version = "dev"
 app-name = "Instagram"
 pkg-name = "com.instagram.android"
