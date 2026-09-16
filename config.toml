@@ -45,3 +45,15 @@ rv-brand = "DeVanced"
 cli-source = "MorpheApp/morphe-cli"
 apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/photos/"
 archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.apps.photos"
+
+[Instagram]
+patches-source = "crimera/piko"
+cli-source = "MorpheApp/morphe-cli"
+rv-brand = "Piko"
+patches-version = "dev"
+cli-version = "dev"
+app-name = "Instagram"
+pkg-name = "com.instagram.android"
+arch = "arm64-v8a"
+riplib = true
+direct-dlurl = "https://github.com/Ravi-Kishor/apk-archive/releases/download/439.0.0.37.89/com.instagram.android-439.0.0.37.89-arm64-v8a.apkm"
