@@ -9,4 +9,4 @@ pkg-name = "com.instagram.android"
 arch = "arm64-v8a"
 riplib = true
 direct-dlurl = "https://github.com/Ravi-Kishor/apk-archive/releases/download/439.0.0.37.89/com.instagram.android-439.0.0.37.89-arm64-v8a.apkm"
-excluded-patches = "'Unlock Plus benefits'"
+excluded-patches = "'Unlock Plus benefits' 'Theme'"
