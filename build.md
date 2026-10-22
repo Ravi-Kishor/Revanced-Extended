@@ -1,4 +1,3 @@
-GooglePhotos: 7.92.0.977185651  
 Morphe-Music: 9.40.51  
 Morphe-YouTube: 21.40.161  
 
@@ -7,19 +6,15 @@ Use [zygisk-detach](https://github.com/j-hc/zygisk-detach) to detach YouTube and
 
 [revanced-magisk-module](https://github.com/j-hc/revanced-magisk-module)
   
-Patches: crimera/piko/patches-3.10.0.mpp  
-[Changelog](https://github.com/crimera/piko/releases/tag/v3.10.0)
+Patches: MorpheApp/morphe-patches/patches-1.48.0.mpp  
+[Changelog](https://github.com/MorpheApp/morphe-patches/releases/tag/v1.48.0)
 
-CLI: MorpheApp/morphe-cli/morphe-desktop-1.18.2-dev.2-all.jar  
-Patches: MorpheApp/morphe-patches/patches-1.47.0.mpp  
-[Changelog](https://github.com/MorpheApp/morphe-patches/releases/tag/v1.47.0)
+CLI: MorpheApp/morphe-cli/morphe-desktop-1.19.0-all.jar  
+Patches: MorpheApp/morphe-patches/patches-1.48.0.mpp  
+[Changelog](https://github.com/MorpheApp/morphe-patches/releases/tag/v1.48.0)
 
-CLI: MorpheApp/morphe-cli/morphe-desktop-1.18.1-all.jar  
-Patches: MorpheApp/morphe-patches/patches-1.47.0.mpp  
-[Changelog](https://github.com/MorpheApp/morphe-patches/releases/tag/v1.47.0)
+CLI: MorpheApp/morphe-cli/morphe-desktop-1.19.0-all.jar    
 
-CLI: MorpheApp/morphe-cli/morphe-desktop-1.18.1-all.jar  
+Skipped:  
 Patches: RookieEnough/De-Vanced/patches-1.5.1.mpp  
-[Changelog](https://github.com/RookieEnough/De-Vanced/releases/tag/v1.5.1)
-
-CLI: MorpheApp/morphe-cli/morphe-desktop-1.18.1-all.jar    
+Patches: crimera/piko/patches-3.10.0.mpp    
